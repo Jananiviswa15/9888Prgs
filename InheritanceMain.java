@@ -22,7 +22,18 @@ public class InheritanceMain {
 //		keypadPhone child1 = new keypadPhone(true);
 //		child1.displaydetails();
 //		
-		keypadPhone child2 = new keypadPhone(true, "nokia",5000);
-		child2.displaydetails();
+//		keypadPhone child2 = new keypadPhone(true, "nokia",5000);
+//		child2.displaydetails();
+//		
+//		SmartPhone smartph = new SmartPhone();
+//		smartph.displaydetails();
+		
+		SmartPhone smartPh1 = new SmartPhone(true,(short) 5,(short) 48, "samsung", 20000);
+		smartPh1.displaydetails();
+		smartPh1.calling();
+		
+		System.out.println(smartPh1 instanceof SmartPhone);
+		System.out.println(smartPh1 instanceof keypadPhone);
+		System.out.println(smartPh1 instanceof Mobile);
 	} 
 }
