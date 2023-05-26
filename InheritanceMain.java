@@ -27,13 +27,28 @@ public class InheritanceMain {
 //		
 //		SmartPhone smartph = new SmartPhone();
 //		smartph.displaydetails();
+//		
+//		SmartPhone smartPh1 = new SmartPhone(true,(short) 5,(short) 48, "samsung", 20000);
+//		smartPh1.displaydetails();
+//		smartPh1.calling();
+//		
+//		Sibiling sib1 = new Sibiling();
+//		sib1.display();
+//		System.out.println(smartPh1 instanceof SmartPhone);
+//		System.out.println(smartPh1 instanceof keypadPhone);
+//		System.out.println(smartPh1 instanceof Mobile);
+
 		
-		SmartPhone smartPh1 = new SmartPhone(true,(short) 5,(short) 48, "samsung", 20000);
-		smartPh1.displaydetails();
-		smartPh1.calling();
+//		Mobile.sayHi();
+//		keypadPhone.sayHi();
+//		System.out.println(keypadPhone.manufacturingYear);
+//		
+		Mobile mobileObj = new keypadPhone();  //rt
+		mobileObj.displaydetails();
+		mobileObj.rulesAndRegulations();
+		//keypadPhone keypad1 = new Mobile(); not possible
 		
-		System.out.println(smartPh1 instanceof SmartPhone);
-		System.out.println(smartPh1 instanceof keypadPhone);
-		System.out.println(smartPh1 instanceof Mobile);
+		
+		mobileObj.sayHi();
 	} 
 }
