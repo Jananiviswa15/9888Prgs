@@ -1,56 +1,60 @@
-package HibernatePrjcts.FirstPrjct;
+package OneToOne;
 
-import org.hibernate.annotations.DynamicUpdate;
-
-import jakarta.persistence.Column;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
-//@Entity(name = "Employee details")
 @Entity
-@Table(name = "Employee details")
-@DynamicUpdate
+@Table(name = "EmpDetails")
 public class Employee {
 
-	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "employee identifier")
 	private Integer empId;
-	
-	@Column(name = "employee name",  nullable = false, length = 20)
-	private String employeeName;
-	
-	
-	@Column(name = "employee mail", unique = true, nullable = false )
-	private String email;
-	
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("Employee [empId=").append(empId).append(", employeeName=").append(employeeName)
-				.append(", email=").append(email).append("]");
+		builder.append("Employee [empId=").append(empId).append(", empName=").append(empName).append(", salary=")
+				.append(salary).append(", mobile=").append(mobile).append("]");
 		return builder.toString();
 	}
-
-	public String getEmployeeName() {
-		return employeeName;
-	}
-
-	public void setEmployeeName(String employeeName) {
-		this.employeeName = employeeName;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
+	private String empName;
+	private int salary;
 	
+	/*@OneToOne(cascade = CascadeType.ALL)
+	 * private Adhar adhaObj
+	 */
+	@OneToOne(cascade = CascadeType.ALL)
+	//@OneToOne(cascade = CascadeType.Persist)
+	//when ever parent obj is save , auto mobile (child) is saved
+	//@JoinColumn(name = "foreigkey")
+	private Mobile mobile;
+	
+	public Mobile getMobile() {
+		return mobile;
+	}
+	public void setMobile(Mobile mobile) {
+		this.mobile = mobile;
+	}
+	
+	public String getEmpName() {
+		return empName;
+	}
+	public void setEmpName(String empName) {
+		this.empName = empName;
+	}
+	public int getSalary() {
+		return salary;
+	}
+	public void setSalary(int salary) {
+		this.salary = salary;
+	}
+
+
+
 }
