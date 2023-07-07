@@ -12,55 +12,30 @@ public class EmployeeDriver {
 		Configuration config = new Configuration().configure().addAnnotatedClass(Employee.class);
 		SessionFactory sessionFact = config.buildSessionFactory();
 		Session session = sessionFact.openSession();
-		//readEmployeeDetails(session);
 		//insertEmployee(session);
+		readEmployeeDetails(session);
+		
 		//updateEmployeeDetails(session);
-		deleteEmployee(session);
-
+		//deleteEmployee(session);
+		session.getSessionFactory().close(); //session fact -> close -> drop the table
 	}
 
-	private static void deleteEmployee(Session session) {
-		System.out.println("ENter id of the person for updating");
-		int empId = scan.nextInt();
-		Employee empFromDb = session.get(Employee.class, empId);
-		if(empFromDb != null) {
-			session.beginTransaction();
-			session.delete(empFromDb);
-			session.getTransaction().commit();
-			session.close();
-		}
-		else
-			System.out.println("emp with specified id is not present");
-	}
-
-	private static void updateEmployeeDetails(Session session) {
-
-		System.out.println("ENter id of the person for updating");
-		int empId = scan.nextInt();
-		Employee empFromDb = session.get(Employee.class, empId);
-		if(empFromDb != null) {
-			System.out.println("Enter new mail id");
-			empFromDb.setEmail(scan.next());
-			System.out.println("Enter new name ");
-			empFromDb.setEmployeeName(scan.next());
-			session.beginTransaction();
-			Integer updatedRecrdKey = (Integer)session.save(empFromDb);
-			session.getTransaction().commit();
-			session.close();
-			System.out.println("updated record with id :"+ updatedRecrdKey);
-		}
-		else
-			System.out.println("emp with specified id is not present");
-
-
-	}
-
-	private static void readEmployeeDetails(Session session) {
+		private static void readEmployeeDetails(Session session) {
 		System.out.println("ENter id of the person for searching");
 		int empId = scan.nextInt();
+		session.beginTransaction();
 		Employee empFromDb = session.get(Employee.class, empId);
-		if(empFromDb != null)
+		System.out.println(session.contains(empFromDb));
+		session.detach(empFromDb);  //evict()
+		System.out.println(session.contains(empFromDb));
+		if(empFromDb != null) {
+			
+			empFromDb.setEmail("jsahsdhsh");
+		//dirty checking // u didnt call update, save
+			session.getTransaction().commit();
+			empFromDb.setEmployeeName("duummy"); //java side value got changed, no db changes 
 			System.out.println(empFromDb);
+		}
 		else
 			System.out.println("emp with specified id is not present");
 
@@ -68,7 +43,9 @@ public class EmployeeDriver {
 
 	private static void insertEmployee( Session session) {
 		session.beginTransaction();
-		Integer insertedRecrdKey = (Integer) session.save(getEmployee());
+		Employee emp = getEmployee();
+//persistent state
+		Integer insertedRecrdKey = (Integer) session.save(emp);
 		//session.persist(getEmployee());
 		session.getTransaction().commit();
 		System.out.println("Inserted record with id :"+insertedRecrdKey);
@@ -80,14 +57,18 @@ public class EmployeeDriver {
 
 	private static Employee getEmployee() {
 		Employee empObj = new Employee();
-
+		Address adrsObj = new Address();
+		adrsObj.setDistrict("dist");
+		adrsObj.setPincode(123);
+		adrsObj.setState("hi");
 		System.out.println("Enter emp name");
 		empObj.setEmployeeName(scan.next());
 		System.out.println("Enter emp email");
 		empObj.setEmail(scan.next());
+		empObj.setAdrs(adrsObj);
 		return empObj;
 
-
+//2 objs is jvm --> transients --> not in db not in session
 	}
 
 
