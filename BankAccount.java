@@ -4,6 +4,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 public class BankAccount {
@@ -13,12 +14,25 @@ public class BankAccount {
 	private Integer bankId;
 	
 	private String location;
+	
+	@ManyToOne
+	private Person person;
+	
+
+	public Person getPerson() {
+		return person;
+	}
 
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("BankAccount [bankId=").append(bankId).append(", location=").append(location).append("]");
+		builder.append("BankAccount [bankId=").append(bankId).append(", location=").append(location).append(", person=")
+				.append(person).append("]");
 		return builder.toString();
+	}
+
+	public void setPerson(Person person) {
+		this.person = person;
 	}
 
 	public String getLocation() {

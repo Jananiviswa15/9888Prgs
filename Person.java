@@ -19,8 +19,8 @@ public class Person {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer personId;
 	
-	@OneToMany(cascade = CascadeType.ALL)
-	@JoinTable(name = "third_table", joinColumns = @JoinColumn(name = "firstCol"), inverseJoinColumns = @JoinColumn(name = "seconCol"))
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "person")
+//	@JoinTable(name = "third_table", joinColumns = @JoinColumn(name = "firstCol"), inverseJoinColumns = @JoinColumn(name = "seconCol"))
 	private List<BankAccount> bankAcnt = new ArrayList<BankAccount>();
 	
 	public List<BankAccount> getBankAcnt() {
@@ -48,7 +48,7 @@ public class Person {
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("Person [personId=").append(personId).append(", bankAcnt=").append(bankAcnt).append(", name=")
+		builder.append("Person [personId=").append(personId).append(", name=")
 				.append(name).append(", age=").append(age).append("]");
 		return builder.toString();
 	}

@@ -20,6 +20,9 @@ public class DriverClass {
 		person.getBankAcnt().add(obj2);
 		person.getBankAcnt().add(obj1);
 		
+		//many to one
+		obj1.setPerson(person);
+		obj2.setPerson(person);
 		session.beginTransaction();
 		session.save(person);
 		session.getTransaction().commit();
@@ -31,12 +34,20 @@ public class DriverClass {
 		System.out.println(person);
 		
 	}
+	
+
+	static void fetchDatabyBank(Session session) {
+		BankAccount person = session.get(BankAccount.class, 2);
+		System.out.println(person);
+		
+	}
 	public static void main(String[] args) {
 		Configuration config = new Configuration().configure().addAnnotatedClass(Person.class).addAnnotatedClass(BankAccount.class);
 		SessionFactory sessionFact = config.buildSessionFactory();
 		Session session = sessionFact.openSession();
 	//insertPersonAdrss(session);
-		fetchData(session);
+	//	fetchData(session);
+	fetchDatabyBank(session);
 	}
 
 }
