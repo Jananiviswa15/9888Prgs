@@ -1,53 +1,39 @@
-package OneToMany;
-
-import OneToOne.Employee;
-import OneToOne.EsatblishConnect;
-import OneToOne.Mobile;
+package Inheritance;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
-public class DriverClass {
-	static void insertPersonAdrss(Session session){
-		
-		BankAccount obj1 = new BankAccount();
-		obj1.setLocation("agra");
-		BankAccount obj2 = new BankAccount();
-		obj2.setLocation("cochin");
-		Person person = new Person();
-		person.setAge(20);
-		person.setName("priya");
-		person.getBankAcnt().add(obj2);
-		person.getBankAcnt().add(obj1);
-		
-		//many to one
-		obj1.setPerson(person);
-		obj2.setPerson(person);
-		session.beginTransaction();
-		session.save(person);
-		session.getTransaction().commit();
-	
-	}
-	
-	static void fetchData(Session session) {
-		Person person = session.get(Person.class, 1);
-		System.out.println(person);
-		
-	}
-	
 
-	static void fetchDatabyBank(Session session) {
-		BankAccount person = session.get(BankAccount.class, 2);
-		System.out.println(person);
-		
-	}
+public class DriverClass {
+
 	public static void main(String[] args) {
-		Configuration config = new Configuration().configure().addAnnotatedClass(Person.class).addAnnotatedClass(BankAccount.class);
+		
+		Person person = new Person();
+		person.setGender("female");
+		person.setName("supriya");
+		
+		Student std = new Student();
+		std.setGender("female");
+		std.setName("minal");
+		std.setGrade(12);
+		std.setSchoolName("DPS");
+		
+		Employee emp = new Employee();
+		emp.setDesignation("GM");
+		emp.setGender("male");
+		emp.setName("ahsanullah");
+		emp.setSalary(600000);
+		
+		Configuration config = new Configuration().configure().addAnnotatedClass(Person.class).addAnnotatedClass(Student.class).addAnnotatedClass(Employee.class);
 		SessionFactory sessionFact = config.buildSessionFactory();
 		Session session = sessionFact.openSession();
-	//insertPersonAdrss(session);
-	//	fetchData(session);
-	fetchDatabyBank(session);
+		session.beginTransaction();
+		session.save(emp);
+		session.save(std);
+		session.save(person);
+		session.getTransaction().commit();
+		
+
 	}
 
 }

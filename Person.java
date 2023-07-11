@@ -1,63 +1,42 @@
-package OneToMany;
+package Inheritance;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import jakarta.persistence.CascadeType;
+import jakarta.persistence.DiscriminatorColumn;
+import jakarta.persistence.DiscriminatorType;
+import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
-import jakarta.persistence.OneToMany;
-
+import jakarta.persistence.Inheritance;
+import jakarta.persistence.InheritanceType;
 @Entity
+//@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+//@DiscriminatorColumn(name = "type of record", discriminatorType = DiscriminatorType.STRING)
+//@DiscriminatorValue(value = "personDetails")
+
+//@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+
+@Inheritance(strategy = InheritanceType.JOINED)
 public class Person {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer personId;
+	private int personId;
 	
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "person")
-//	@JoinTable(name = "third_table", joinColumns = @JoinColumn(name = "firstCol"), inverseJoinColumns = @JoinColumn(name = "seconCol"))
-	private List<BankAccount> bankAcnt = new ArrayList<BankAccount>();
-	
-	public List<BankAccount> getBankAcnt() {
-		return bankAcnt;
-	}
-
-	public void setBankAcnt(List<BankAccount> bankAcnt) {
-		this.bankAcnt = bankAcnt;
-	}
-
 	private String name;
-	
 	public String getName() {
 		return name;
 	}
-
 	public void setName(String name) {
 		this.name = name;
 	}
-
-	public int getAge() {
-		return age;
+	public String getGender() {
+		return gender;
 	}
-
-	@Override
-	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("Person [personId=").append(personId).append(", name=")
-				.append(name).append(", age=").append(age).append("]");
-		return builder.toString();
+	public void setGender(String gender) {
+		this.gender = gender;
 	}
-
-	public void setAge(int age) {
-		this.age = age;
-	}
-
-	private int age;
-
+	private String gender;
+	
 	
 }
