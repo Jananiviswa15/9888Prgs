@@ -1,40 +1,33 @@
-package OneToOne;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-
-@Entity
-@Table(name = "mobileDetails")
 public class Mobile {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer mobId;
 	
-	private String barndName;
-	private int totalCost;
+//	public Mobile() {
+//		System.out.println("mobile craeted..");
+//	}
+
+	private Display adrs; // Display adrs= new ManufaturingArs()
 	
-	@Override
-	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("Mobile [mobId=").append(mobId).append(", barndName=").append(barndName).append(", totalCost=")
-				.append(totalCost).append("]");
-		return builder.toString();
+	public Mobile(Display adrs, Display lcdAttr) {
+		
+		this.adrs = adrs;
+		this.lcdAttr = lcdAttr;
 	}
-	public String getBarndName() {
-		return barndName;
-	}
-	public void setBarndName(String barndName) {
-		this.barndName = barndName;
-	}
-	public int getTotalCost() {
-		return totalCost;
-	}
-	public void setTotalCost(int totalCost) {
-		this.totalCost = totalCost;
-	}
+
+	private Display lcdAttr; // Display lcdAttr= new ManufaturingArs()
+	 
 	
+	public void setLcdAttr(LCD lcdAttr) {
+		this.lcdAttr = lcdAttr;
+	}
+
+	public void setAdrs(ManufacturingAdrs adrs) {
+		System.out.println("setter inject");
+		this.adrs = adrs;
+	}
+
+	public void displayMobileDetails() {
+		adrs.display();
+		lcdAttr.display();
+	}
 }

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+<bean id = "lcdObj" class = "LCD"/>
+<bean id = "adrsObj" class="ManufacturingAdrs" />
+
+<!-- 
+	<bean id="myMobile1" class="Mobile">
+		<property name="adrs">
+			<bean class="ManufacturingAdrs" />
+		</property>
+		<property name = "lcdAttr">
+			<bean class = "LCD"/>
+		</property>
+	</bean>
+
+
+	<bean id="myMobile2" class="Mobile">
+		<property name="adrs">
+			<bean class="ManufacturingAdrs" />
+		</property>
+		<property name = "lcdAttr">
+			<bean class = "LCD"/>
+		</property>
+	</bean>  -->
+	
+	<bean id="myMobile2" class="Mobile">
+		<property name="adrs" ref = "adrsObj"/>
+		<property name = "lcdAttr" ref = "lcdObj"/>
+	</bean>
+	
+	<bean id="myMobile1" class="Mobile">
+		<property name="adrs" ref = "adrsObj"/>
+		<property name = "lcdAttr" ref = "lcdObj"/>
+	</bean>
+</beans>
