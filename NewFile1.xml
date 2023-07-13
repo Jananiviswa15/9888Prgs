@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        https://www.springframework.org/schema/context/spring-context.xsd">
+
+    <context:annotation-config/>   
+    
+      <!--    
+        
+        <bean id = "adrs" class = "Address"/>  by name
+    
+     <bean id = "adrsObj" class = "Address"/> by type
+        
+        bean id = "emp" class = "Employee"  autowire="byName"
+        
+        <bean id = "emp" class = "Employee"  autowire="byType">  
+       
+       <bean id = "emp" class = "Employee"  autowire="constructor">
+        </bean> -->
+        
+        <bean id = "officeAdrsObj" class = "Address"/>
+        <bean id = "houseAdrsObj" class = "Address"/>
+         <bean id = "adrsObj" class = "Address">
+         <property name = "state" value = "UP"/>
+         </bean> 
+        <bean id = "emp" class = "Employee"/>
+        </beans>

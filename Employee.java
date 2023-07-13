@@ -1,24 +1,33 @@
-package Inheritance;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 
-import jakarta.persistence.DiscriminatorValue;
-import jakarta.persistence.Entity;
+public class Employee {
 
-@Entity(name = "empDEtails")
-//@DiscriminatorValue(value = "empDetails")
-public class Employee extends Person{
+	@Autowired
+	@Qualifier("adrsObj")
+	//u dont need setter
+	private Address adrs;
+	
+	
+	public Employee() {
+		System.out.println("no args con");
+	}
+	//@Autowired
+	public Employee(Address adrs) {
+		System.out.println("constr");
+		this.adrs = adrs;
+	}
 
-	private int salary;
-	public int getSalary() {
-		return salary;
+	
+/*@Autowired//byname , bytypoe(1st prioroty)
+ * @Qualifier("adrsObj")
+	public void setAdrs(Address adrs) {
+		System.out.println("setter");
+		this.adrs = adrs;
+	}*/
+
+	void display() {
+		adrs.display();
 	}
-	public void setSalary(int salary) {
-		this.salary = salary;
-	}
-	public String getDesignation() {
-		return designation;
-	}
-	public void setDesignation(String designation) {
-		this.designation = designation;
-	}
-	private String designation;
+	
 }
