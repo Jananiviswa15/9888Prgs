@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd">
+        
+<!--         <bean id = "personObj" class = "PersonForCollection">
+        <property name = "age" value =  "56"/>
+        <property name = "name" value = "shruthi"/>
+        <property name="impCards">
+        <list>
+        <value> Adhaar card        </value>
+        <value> Pan card        </value>
+        <value> ration card        </value>
+        <value> driviing lis card        </value>
+        
+        </list>
+        </property>
+        
+        </bean>  -->
+        
+        <bean id = "personObj" class = "PersonForCollection">
+        <constructor-arg name = "age" value =  "56"/>
+        <constructor-arg name = "name" value = "shruthi"/>
+        <constructor-arg name="impCards">
+        <list>
+        <value> Adhaar card        </value>
+        <value> Pan card        </value>
+        <value> ration card        </value>
+        <value> driviing lis card        </value>
+        
+        </list>
+        </constructor-arg>
+        
+        </bean>
+</beans>
