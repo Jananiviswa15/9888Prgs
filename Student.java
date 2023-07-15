@@ -1,26 +1,45 @@
-package Inheritance;
+package com.example.demo.model;
 
-import jakarta.persistence.DiscriminatorValue;
-import jakarta.persistence.Entity;
+import javax.annotation.Generated;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 @Entity
-@DiscriminatorValue(value = "stdDetails")
+public class Student {
 
-public class Student extends Person{
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int rollNum;
+	
+	public int getRollNum() {
+		return rollNum;
+	}
 
-	private String schoolName;
-	public String getSchoolName() {
-		return schoolName;
+	public void setRollNum(int rollNum) {
+		this.rollNum = rollNum;
 	}
-	public void setSchoolName(String schoolName) {
-		this.schoolName = schoolName;
+
+	public String getName() {
+		return name;
 	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
 	public int getGrade() {
 		return grade;
 	}
+
 	public void setGrade(int grade) {
 		this.grade = grade;
 	}
+
+	private String name;
+
 	private int grade;
 	
 }
