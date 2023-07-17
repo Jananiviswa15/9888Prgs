@@ -1,33 +1,60 @@
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
+package com.example.demo.model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+import org.hibernate.annotations.DynamicUpdate;
+
+@Entity
+@Table(name = "employee_table")
+@DynamicUpdate
 public class Employee {
 
-	@Autowired
-	@Qualifier("adrsObj")
-	//u dont need setter
-	private Address adrs;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer id;
 	
+	@Column(name = "first_name", nullable = false)
+	private String firstName;
 	
-	public Employee() {
-		System.out.println("no args con");
-	}
-	//@Autowired
-	public Employee(Address adrs) {
-		System.out.println("constr");
-		this.adrs = adrs;
-	}
-
+	@Column(name = "last_name", nullable = false)
+	private String lastName;
 	
-/*@Autowired//byname , bytypoe(1st prioroty)
- * @Qualifier("adrsObj")
-	public void setAdrs(Address adrs) {
-		System.out.println("setter");
-		this.adrs = adrs;
-	}*/
-
-	void display() {
-		adrs.display();
+	@Column(name = "emp_email", unique = true)
+	private String email;
+	
+	public Employee() {}
+	
+	public Employee(String firstName, String lastName) {
+		this.firstName = firstName;
+		this.lastName = lastName;
 	}
+	public Employee(String firstName, String lastName, String email) {
+		this(firstName, lastName);
+		this.email = email;
+	}
+	public String getFirstName() {
+		return firstName;
+	}
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+	public String getLastName() {
+		return lastName;
+	}
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	
 	
 }
