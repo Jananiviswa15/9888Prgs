@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- atmObjectFromCLass = new ATM() -->
+	<!-- <bean id = "atmObjectFromClass" class = "FactoryPattern.ATM" factory-method="getATMObj"></bean> -->
+
+	<!-- <bean id = "printObj" class = "FactoryPattern.PrintObjFactory" factory-method="getPrintObj"></bean> -->
+
+	<!-- <bean id = "printerObj" class = "FactoryPattern.PrintObjFactory"></bean> 
+		<bean id = "obj" class = "FactoryPattern.PrintObjFactory" factory-method= 
+		"getPrintObj" factory-bean="printerObj"></bean> -->
+
+
+	<bean id="printer" class="FactoryPattern.PrintObjFactory"
+		factory-method="getPrintObj"></bean>
+	<bean id="atmObj" class="FactoryPattern.ATM" autowire = "byName">
+
+		<!--  <property name="printer" ref="printer" /> -->
+	</bean>
+</beans>
