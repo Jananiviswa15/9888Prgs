@@ -1,45 +1,21 @@
-package com.example.demo.model;
+package ProxyPattern;
 
-import javax.annotation.Generated;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+public class Student implements DailySession {
 
-@Entity
-public class Student {
+	private Attendance attendance;
+	public Student(Attendance attendance) {
+		this.setAttendance(attendance);
+	}
+	public Attendance getAttendance() {
+		return attendance;
+	}
+	public void setAttendance(Attendance attendance) {
+		this.attendance = attendance;
+	}
+	@Override
+	public void attendCLasses() {
+		System.out.println("attend the classes");
 
-	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int rollNum;
-	
-	public int getRollNum() {
-		return rollNum;
 	}
 
-	public void setRollNum(int rollNum) {
-		this.rollNum = rollNum;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public int getGrade() {
-		return grade;
-	}
-
-	public void setGrade(int grade) {
-		this.grade = grade;
-	}
-
-	private String name;
-
-	private int grade;
-	
 }
