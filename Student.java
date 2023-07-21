@@ -1,21 +1,28 @@
-package ProxyPattern;
+package SpringRest.TransactionalDummy;
 
-public class Student implements DailySession {
+public class Student {
 
-	private Attendance attendance;
-	public Student(Attendance attendance) {
-		this.setAttendance(attendance);
+	
+	private int rollNum;
+	public int getRollNum() {
+		return rollNum;
 	}
-	public Attendance getAttendance() {
-		return attendance;
+	public void setRollNum(int rollNum) {
+		this.rollNum = rollNum;
 	}
-	public void setAttendance(Attendance attendance) {
-		this.attendance = attendance;
+	public String getName() {
+		return name;
 	}
-	@Override
-	public void attendCLasses() {
-		System.out.println("attend the classes");
-
+	public void setName(String name) {
+		this.name = name;
 	}
-
+	public int getGrade() {
+		return grade;
+	}
+	public void setGrade(int grade) {
+		this.grade = grade;
+	}
+	private String name;
+	private int grade;
+	
 }
