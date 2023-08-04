@@ -1,0 +1,13 @@
+table, th, td {
+    border: 1px dotted green;
+  }
+
+  th{
+    color : maroon;
+    background-color: aqua;
+    text-shadow: 2px 2px yellow;
+  }
+  td{
+    color : pink;
+
+  }
