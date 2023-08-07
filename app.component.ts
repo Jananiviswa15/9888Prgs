@@ -7,4 +7,12 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'COMPANY DETAILS';
+  passValueToCHild = 'AC';
+
+  items = ['tv', 'AC'];
+
+  addItem(newItem : string){
+    this.items.push(newItem);
+    console.log(this.items);
+  }
 }
