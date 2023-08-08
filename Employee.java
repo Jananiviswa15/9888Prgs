@@ -11,38 +11,37 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.DynamicUpdate;
 
+
+//write comments and check naming conventions
 @Entity
-@Table(name = "employee_table")
-@DynamicUpdate
-
-@NamedQueries(value = {
-@NamedQuery(name = "Employee.getDetailsByFirstName",query = "Select emp from employee emp where emp.firstName=?1" ),
-@NamedQuery(name = "Employee.getDetailsByNameAndEmail",query = "Select emp from employee emp where emp.firstName=?1 AND emp.email=?2" )
-})
+@Table(name = "employees")
 public class Employee {
-
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
+	private long id;
 	
-	@Column(name = "first_name", nullable = false)
+	@Column(name = "first_name")
 	private String firstName;
-	
-	@Column(name = "last_name", nullable = false)
+
+	@Column(name = "last_name")
 	private String lastName;
 	
-	@Column(name = "emp_email", unique = true)
-	private String email;
+	@Column(name = "email_id")
+	private String emailId;
 	
-	public Employee() {}
+	@Column(name = "tech_emp")
+	private String isTechEmp;
 	
-	public Employee(String firstName, String lastName) {
-		this.firstName = firstName;
-		this.lastName = lastName;
+	public Employee() {
+		
 	}
-	public Employee(String firstName, String lastName, String email) {
-		this(firstName, lastName);
-		this.email = email;
+	
+	public long getId() {
+		return id;
+	}
+	public void setId(long id) {
+		this.id = id;
 	}
 	public String getFirstName() {
 		return firstName;
@@ -56,12 +55,18 @@ public class Employee {
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
-	public String getEmail() {
-		return email;
+	public String getEmailId() {
+		return emailId;
 	}
-	public void setEmail(String email) {
-		this.email = email;
+	public void setEmailId(String emailId) {
+		this.emailId = emailId;
 	}
-	
-	
+
+	public String getIsTechEmp() {
+		return isTechEmp;
+	}
+
+	public void setIsTechEmp(String isTechEmp) {
+		this.isTechEmp = isTechEmp;
+	}
 }
